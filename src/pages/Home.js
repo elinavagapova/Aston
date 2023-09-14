@@ -1,5 +1,10 @@
+import { ErrorBoundary } from '../components/errorBoundary/ErrorBoundary';
+import { ComicsList } from '../components/comicsList/СomicsList';
+
 export function Home() {
   return (
-    <h1>Home</h1>
-  )
+    <ErrorBoundary>
+      <ComicsList />
+    </ErrorBoundary>
+  );
 }
