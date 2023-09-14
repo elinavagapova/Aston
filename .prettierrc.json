@@ -8,6 +8,6 @@
   "endOfLine": "auto",
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
-  "arrowParens": "always",
+  "arrowParens": "avoid",
   "jsxSingleQuote": true
 }
