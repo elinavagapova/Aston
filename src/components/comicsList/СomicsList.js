@@ -44,7 +44,7 @@ export function ComicsList() {
   const renderItems = arr => {
     const items = arr.map(({ title, thumbnail, price, id }) => (
       <li className='comics__item' key={id}>
-        <Link to='/'>
+        <Link to={`/comic/${id}`}>
           <img src={thumbnail} alt={title} className='comics__item-img' />
           <div className='comics__item-name'>{title}</div>
           <div className='comics__item-price'>{price}</div>
@@ -70,7 +70,7 @@ export function ComicsList() {
         onClick={() => onRequest(offset, false)}
         style={comicsEnded ? { display: 'none' } : { display: 'block' }}
       >
-        <div className='inner'>load more</div>
+        <div className='inner'>Загрузить еще</div>
       </button>
     </div>
   );
