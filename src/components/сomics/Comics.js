@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-export function RenderComics({ data }) {
+export function Comics({ data }) {
   return (
     <ul className='comics__grid'>
       {data.map(({ title, thumbnail, price, id }) => (
@@ -17,7 +17,7 @@ export function RenderComics({ data }) {
   );
 }
 
-RenderComics.propTypes = {
+Comics.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
   ).isRequired,

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Spinner } from '../spinner/Spinner';
 import { ErrorMessage } from '../errorMessage/ErrorMessage';
 import { useComicsServices } from '../../services/ComicsService';
-import { RenderComics } from '../renderComics/RenderComics';
+import { Comics } from '../сomics/Comics';
 
 import './comicsList.scss';
 
@@ -48,7 +48,7 @@ export function ComicsList() {
     <div className='comics__list'>
       {spinner}
       {errorMessage}
-      <RenderComics data={comicsList} />
+      <Comics data={comicsList} />
       <button
         type='button'
         className='button button__main button__long'

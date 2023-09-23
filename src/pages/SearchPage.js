@@ -5,20 +5,20 @@ import { SearchInput } from '../components/searchInput/SearchInput';
 import { useComicsServices } from '../services/ComicsService';
 import { Spinner } from '../components/spinner/Spinner';
 import { ErrorMessage } from '../components/errorMessage/ErrorMessage';
-import { RenderComics } from '../components/renderComics/RenderComics';
+import { Comics } from '../components/сomics/Comics';
 
 export function SearchPage() {
   const [comicsList, setComicsList] = useState([]);
 
   const [searchParams] = useSearchParams();
-  const postQuery = searchParams.get('name') || '';
+  const nameQuery = searchParams.get('name') || '';
 
   const { loading, error, getComicsByName } = useComicsServices();
 
   useEffect(() => {
     setComicsList([]);
-    getComicsByName(postQuery).then(setComicsList);
-  }, [postQuery]);
+    getComicsByName(nameQuery).then(setComicsList);
+  }, [nameQuery]);
 
   const errorMessage = error ? <ErrorMessage /> : null;
   const spinner = loading ? <Spinner /> : null;
@@ -29,7 +29,7 @@ export function SearchPage() {
       <div className='comics__list'>
         {spinner}
         {errorMessage}
-        <RenderComics data={comicsList} />
+        <Comics data={comicsList} />
       </div>
     </>
   );
