@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { Spinner } from '../spinner/Spinner';
@@ -10,8 +10,11 @@ import './singleComic.scss';
 export function SingleComic() {
   const { comicId } = useParams();
   const [comic, setComic] = useState(null);
+  const navigate = useNavigate();
 
   const { loading, error, getComic } = useComicsServices();
+
+  const goBack = () => navigate(-1);
 
   const updateComic = () => {
     getComic(comicId).then(com => setComic(com));
@@ -32,9 +35,9 @@ export function SingleComic() {
         <p className='single-comic__descr'>{comic.page}</p>
         <div className='single-comic__price'>{comic.price}</div>
       </div>
-      <Link to='/' className='single-comic__back'>
+      <button type='button' className='single-comic__back' onClick={goBack}>
         Вернуться назад
-      </Link>
+      </button>
     </div>
   );
 

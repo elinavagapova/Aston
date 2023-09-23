@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import { Spinner } from '../spinner/Spinner';
 import { ErrorMessage } from '../errorMessage/ErrorMessage';
 import { useComicsServices } from '../../services/ComicsService';
+import { Comics } from '../сomics/Comics';
 
 import './comicsList.scss';
 
@@ -41,20 +41,6 @@ export function ComicsList() {
     onRequest(offset, true);
   }, []);
 
-  const renderItems = arr => {
-    const items = arr.map(({ title, thumbnail, price, id }) => (
-      <li className='comics__item' key={id}>
-        <Link to={`/comic/${id}`}>
-          <img src={thumbnail} alt={title} className='comics__item-img' />
-          <div className='comics__item-name'>{title}</div>
-          <div className='comics__item-price'>{price}</div>
-        </Link>
-      </li>
-    ));
-    return <ul className='comics__grid'>{items}</ul>;
-  };
-
-  const items = renderItems(comicsList);
   const errorMessage = error ? <ErrorMessage /> : null;
   const spinner = loading && !newItemLoading ? <Spinner /> : null;
 
@@ -62,7 +48,7 @@ export function ComicsList() {
     <div className='comics__list'>
       {spinner}
       {errorMessage}
-      {items}
+      <Comics data={comicsList} />
       <button
         type='button'
         className='button button__main button__long'

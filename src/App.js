@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 
-import { Home } from './pages';
+import { Home, SearchPage } from './pages';
 import { AppHeader } from './components/appHeader/AppHeader';
 import { Spinner } from './components/spinner/Spinner';
 
@@ -17,6 +17,7 @@ export function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/comic/:comicId' element={<ComicPage />} />
+            <Route path='/search' element={<SearchPage />} />
             <Route path='*' element={<Page404 />} />
           </Routes>
         </Suspense>

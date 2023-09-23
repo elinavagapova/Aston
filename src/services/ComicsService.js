@@ -25,5 +25,10 @@ export function useComicsServices() {
     return transformComics(res.data.results[0]);
   };
 
-  return { loading, error, getAllComics, getComic };
+  const getComicsByName = async name => {
+    const res = await request(`${apiBase}?titleStartsWith=${name}&${apiKey}`);
+    return res.data.results.map(transformComics);
+  };
+
+  return { loading, error, getAllComics, getComic, getComicsByName };
 }
