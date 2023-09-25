@@ -1,48 +1,35 @@
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { comicsCleaned, fetchComics } from '../../store/comicsListSlice';
 
 import { Spinner } from '../spinner/Spinner';
 import { ErrorMessage } from '../errorMessage/ErrorMessage';
-import { useComicsServices } from '../../services/ComicsService';
 import { Comics } from '../сomics/Comics';
 
 import './comicsList.scss';
 
 export function ComicsList() {
-  const [comicsList, setComicsList] = useState([]);
-  const [newItemLoading, setNewItemLoading] = useState(false);
-  const [offset, setOffset] = useState(230);
-  const [comicsEnded, setComicsEnded] = useState(false);
+  const [offset, setOffset] = useState(265);
+  const { isLoading, isError, comicsList, comicsEnded, newItemLoading } = useSelector(
+    state => state.allComics
+  );
+  const dispatch = useDispatch();
 
-  const { loading, error, getAllComics } = useComicsServices();
-
-  const onCharListLoaded = newComicsList => {
-    let ended = false;
-    if (newComicsList.length < 12) {
-      ended = true;
-    }
-
-    setComicsList([...comicsList, ...newComicsList]);
-    setNewItemLoading(false);
+  const onRequest = offsetId => {
+    dispatch(fetchComics({ offset: offsetId }));
     setOffset(offset + 12);
-    setComicsEnded(ended);
-  };
-
-  const onRequest = (offseId, initial) => {
-    if (initial) {
-      setNewItemLoading(false);
-    } else {
-      setNewItemLoading(true);
-    }
-
-    getAllComics(offseId).then(onCharListLoaded);
   };
 
   useEffect(() => {
-    onRequest(offset, true);
+    onRequest(offset);
+    return () => {
+      dispatch(comicsCleaned());
+    };
   }, []);
 
-  const errorMessage = error ? <ErrorMessage /> : null;
-  const spinner = loading && !newItemLoading ? <Spinner /> : null;
+  const errorMessage = isError ? <ErrorMessage /> : null;
+  const spinner = isLoading && newItemLoading ? <Spinner /> : null;
 
   return (
     <div className='comics__list'>
@@ -53,7 +40,7 @@ export function ComicsList() {
         type='button'
         className='button button__main button__long'
         disabled={newItemLoading}
-        onClick={() => onRequest(offset, false)}
+        onClick={() => onRequest(offset)}
         style={comicsEnded ? { display: 'none' } : { display: 'block' }}
       >
         <div className='inner'>Загрузить еще</div>
