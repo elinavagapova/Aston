@@ -6,6 +6,7 @@ import { comicsCleaned, fetchComics } from '../../store/comicsListSlice';
 import { Spinner } from '../spinner/Spinner';
 import { ErrorMessage } from '../errorMessage/ErrorMessage';
 import { Comics } from '../сomics/Comics';
+import { ButtonLoadMore } from '../buttonLoadMore/ButtonLoadMore';
 
 import './comicsList.scss';
 
@@ -36,15 +37,12 @@ export function ComicsList() {
       {spinner}
       {errorMessage}
       <Comics data={comicsList} />
-      <button
-        type='button'
-        className='button button__main button__long'
-        disabled={newItemLoading}
-        onClick={() => onRequest(offset)}
-        style={comicsEnded ? { display: 'none' } : { display: 'block' }}
-      >
-        <div className='inner'>Загрузить еще</div>
-      </button>
+      <ButtonLoadMore
+        newItemLoading={newItemLoading}
+        offset={offset}
+        comicsEnded={comicsEnded}
+        onRequest={onRequest}
+      />
     </div>
   );
 }

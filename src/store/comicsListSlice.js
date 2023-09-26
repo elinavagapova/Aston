@@ -1,14 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { useHttp } from '../hooks/http.hook';
-
-const transformComics = comics => ({
-  id: comics.id,
-  title: comics.title,
-  description: comics.description || 'Нет описания',
-  thumbnail: `${comics.thumbnail.path}.${comics.thumbnail.extension}`,
-  page: comics.pageCount ? `${comics.pageCount} стр.` : 'Нет информации о количестве страниц',
-  price: comics.prices[0].price ? `${comics.prices[0].price}$` : 'нет данных',
-});
+import { transformComics } from '../transformComics/transformComics';
 
 export const fetchComics = createAsyncThunk('comics/fetchComics', async ({ offset, name }) => {
   const apiBase = `https://gateway.marvel.com:443/v1/public/comics?`;
@@ -25,8 +17,6 @@ export const fetchComics = createAsyncThunk('comics/fetchComics', async ({ offse
   }
   return response;
 });
-
-/* eslint-disable no-param-reassign */
 
 const comicsListSlice = createSlice({
   name: 'comics',
@@ -51,7 +41,7 @@ const comicsListSlice = createSlice({
       .addCase(fetchComics.fulfilled, (state, action) => {
         const newComicsList = action.payload.data.results.map(transformComics);
         state.isLoading = false;
-        state.comicsList = [...state.comicsList, ...newComicsList];
+        state.comicsList.push(...newComicsList);
         state.newItemLoading = false;
         if (newComicsList.length < 12) {
           state.comicsEnded = true;

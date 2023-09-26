@@ -1,14 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { useHttp } from '../hooks/http.hook';
-
-const transformComics = comics => ({
-  id: comics.id,
-  title: comics.title,
-  description: comics.description || 'Нет описания',
-  thumbnail: `${comics.thumbnail.path}.${comics.thumbnail.extension}`,
-  page: comics.pageCount ? `${comics.pageCount} стр.` : 'Нет информации о количестве страниц',
-  price: comics.prices[0].price ? `${comics.prices[0].price}$` : 'нет данных',
-});
+import { transformComics } from '../transformComics/transformComics';
 
 export const fetchComic = createAsyncThunk('comic/fetchComic', async id => {
   const { request } = useHttp();
@@ -17,8 +9,6 @@ export const fetchComic = createAsyncThunk('comic/fetchComic', async id => {
   );
   return response;
 });
-
-/* eslint-disable no-param-reassign */
 
 const singleComicSlice = createSlice({
   name: 'comic',

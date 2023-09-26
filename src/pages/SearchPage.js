@@ -8,6 +8,7 @@ import { SearchInput } from '../components/searchInput/SearchInput';
 import { Spinner } from '../components/spinner/Spinner';
 import { ErrorMessage } from '../components/errorMessage/ErrorMessage';
 import { Comics } from '../components/сomics/Comics';
+import { ButtonLoadMore } from '../components/buttonLoadMore/ButtonLoadMore';
 
 export function SearchPage() {
   const [offset, setOffset] = useState(1);
@@ -45,15 +46,13 @@ export function SearchPage() {
         {errorMessage}
         {!isLoading && !isError && notRes}
         <Comics data={comicsList} />
-        <button
-          type='button'
-          className='button button__main button__long'
-          disabled={newItemLoading}
-          onClick={() => onRequest(offset, nameQuery)}
-          style={comicsEnded ? { display: 'none' } : { display: 'block' }}
-        >
-          <div className='inner'>Загрузить еще</div>
-        </button>
+        <ButtonLoadMore
+          newItemLoading={newItemLoading}
+          offset={offset}
+          comicsEnded={comicsEnded}
+          onRequest={onRequest}
+          nameQuery={nameQuery}
+        />
       </div>
     </>
   );
