@@ -25,5 +25,11 @@
     "react/jsx-no-useless-fragment": "error",
     "import/order": "error",
     "react/react-in-jsx-scope": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/store/*Slice.js"],
+      "rules": { "no-param-reassign": ["error", { "props": false }] }
+    }
+  ]
 }

@@ -7,13 +7,19 @@ export function SearchInput() {
 
   return (
     <Form autoComplete='off'>
-      <Input
-        value={value}
-        onChange={e => setValue(e.target.value)}
-        style={{ width: 800, marginRight: 20, marginLeft: 80 }}
-      />
+      <Form.Item
+        style={{ display: 'inline-block', marginRight: 20, marginLeft: 80, width: 800 }}
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input value={value} onChange={e => setValue(e.target.value)} />
+      </Form.Item>
+
       <Link to={`/search?name=${value}`}>
-        <button type='submit' className='button button__main'>
+        <button type='submit' className='button button__main' disabled={!value.length}>
           <div className='inner'>Поиск</div>
         </button>
       </Link>

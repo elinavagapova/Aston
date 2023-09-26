@@ -1,32 +1,29 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { fetchComic } from '../../store/singleComicSlice';
 
 import { Spinner } from '../spinner/Spinner';
 import { ErrorMessage } from '../errorMessage/ErrorMessage';
-import { useComicsServices } from '../../services/ComicsService';
 
 import './singleComic.scss';
 
 export function SingleComic() {
+  const { isLoading, isError, comic } = useSelector(state => state.singleComic);
+  const dispatch = useDispatch();
   const { comicId } = useParams();
-  const [comic, setComic] = useState(null);
   const navigate = useNavigate();
-
-  const { loading, error, getComic } = useComicsServices();
 
   const goBack = () => navigate(-1);
 
-  const updateComic = () => {
-    getComic(comicId).then(com => setComic(com));
-  };
-
   useEffect(() => {
-    updateComic();
+    dispatch(fetchComic(comicId));
   }, [comicId]);
 
-  const errorMessage = error ? <ErrorMessage /> : null;
-  const spinner = loading ? <Spinner /> : null;
-  const content = !(loading || error || !comic) && (
+  const errorMessage = isError ? <ErrorMessage /> : null;
+  const spinner = isLoading ? <Spinner /> : null;
+  const content = !(isLoading || isError || !comic) && (
     <div className='single-comic'>
       <img src={comic.thumbnail} alt={comic.title} className='single-comic__img' />
       <div className='single-comic__info'>
