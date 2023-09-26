@@ -2,8 +2,16 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input } from 'antd';
 
+import { Suggest } from '../suggest/Suggest';
+import { useGetSuggestQuery } from '../../api/apiSlice';
+import { useDebounce } from '../../hooks/useDebounce';
+
 export function SearchInput() {
   const [value, setValue] = useState('');
+  const debouncedSearch = useDebounce(value, 500);
+  const { data } = useGetSuggestQuery(debouncedSearch, {
+    skip: debouncedSearch.length < 3,
+  });
 
   return (
     <Form autoComplete='off'>
@@ -23,6 +31,7 @@ export function SearchInput() {
           <div className='inner'>Поиск</div>
         </button>
       </Link>
+      {data && value && <Suggest data={data} />}
     </Form>
   );
 }
