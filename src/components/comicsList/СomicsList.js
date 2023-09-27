@@ -11,7 +11,7 @@ import { ButtonLoadMore } from '../buttonLoadMore/ButtonLoadMore';
 import './comicsList.scss';
 
 export function ComicsList() {
-  const [offset, setOffset] = useState(265);
+  const [offset, setOffset] = useState(360);
   const { isLoading, isError, comicsList, comicsEnded, newItemLoading } = useSelector(
     state => state.allComics
   );
