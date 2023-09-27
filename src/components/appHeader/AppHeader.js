@@ -13,11 +13,11 @@ export function AppHeader() {
       <nav className='app__menu'>
         <ul>
           <li>
-            <Link to='/'>Зарегистрироваться</Link>
+            <Link to='/signup'>Зарегистрироваться</Link>
           </li>
           /
           <li>
-            <Link to='/'>Войти</Link>
+            <Link to='/signin'>Войти</Link>
           </li>
         </ul>
       </nav>
