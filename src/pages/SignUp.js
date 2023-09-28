@@ -5,10 +5,13 @@ import { SignUpForm } from '../components/signUpForm/SignUpForm';
 export function SignUp() {
   return (
     <>
-      <h1>Регистрация</h1>
+      <h1 style={{ textAlign: 'center' }}>Регистрация</h1>
       <SignUpForm />
-      <p>
-        Уже есть аккаунт? <Link to='/signin'>Войти</Link>
+      <p style={{ textAlign: 'center' }}>
+        Уже есть аккаунт?{' '}
+        <Link to='/signin' style={{ textDecoration: 'underline' }}>
+          Войти
+        </Link>
       </p>
     </>
   );

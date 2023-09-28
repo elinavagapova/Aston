@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import { setUser } from '../../store/userSlice';
-import { Form } from '../form/Form';
+import { FormUser } from '../form/Form';
 
 export function SignInForm() {
   const dispatch = useDispatch();
@@ -25,5 +25,5 @@ export function SignInForm() {
       .catch(() => alert('Такого пользователя не существует')); // eslint-disable-line
   };
 
-  return <Form title='Войти' handleClick={handleLogin} />;
+  return <FormUser title='Войти' handleSubmit={handleLogin} />;
 }

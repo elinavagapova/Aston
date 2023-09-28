@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 import { setUser } from '../../store/userSlice';
-import { Form } from '../form/Form';
+import { FormUser } from '../form/Form';
 
 export function SignUpForm() {
   const dispatch = useDispatch();
@@ -23,5 +23,5 @@ export function SignUpForm() {
     });
   };
 
-  return <Form title='Зарегистрироваться' handleClick={handleRegister} />;
+  return <FormUser title='Зарегистрироваться' handleSubmit={handleRegister} />;
 }

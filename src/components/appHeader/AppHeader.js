@@ -20,11 +20,9 @@ export function AppHeader() {
         <Link to='/'>История</Link>
       </li>
       /
-      <li>
-        <button type='button' onClick={dispatch(removeUser())}>
-          Выход
-        </button>
-      </li>
+      <button type='button' onClick={() => dispatch(removeUser())}>
+        Выход
+      </button>
     </>
   ) : (
     <>
