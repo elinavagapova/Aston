@@ -22,7 +22,7 @@ export function SignInForm() {
         );
         navigate('/');
       })
-      .catch(() => alert('Такого пользователя не существует')); // eslint-disable-line
+      .catch(() => alert('Неправильный логин или пароль')); // eslint-disable-line
   };
 
   return <FormUser title='Войти' handleSubmit={handleLogin} />;

@@ -14,7 +14,7 @@ export function FormUser({ title, handleSubmit }) {
       validationSchema={Yup.object({
         email: Yup.string().email('Неправильный email адрес').required('Обязательное поле!'),
         password: Yup.string()
-          .min(5, 'Минимум 5 символа для заполнения')
+          .min(5, 'Минимум 5 символов для заполнения')
           .required('Обязательное поле!'),
       })}
       onSubmit={values => handleSubmit(values.email, values.password)}

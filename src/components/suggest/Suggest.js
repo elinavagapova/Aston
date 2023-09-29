@@ -1,27 +1,22 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+
+import dataContext from '../../context/context';
 
 import './Suggest.scss';
 
-export function Suggest({ data }) {
+export function Suggest() {
+  const context = useContext(dataContext);
+
   return (
     <ul className='suggest__list'>
-      {!!data.length &&
-        data.map(({ title, id }) => (
+      {!!context.length &&
+        context.map(({ title, id }) => (
           <li key={id} className='suggest__item'>
             <Link to={`/comic/${id}`}>{title}</Link>
           </li>
         ))}
-      {!data.length && <li>Ничего не найдено</li>}
+      {!context.length && <li>Ничего не найдено</li>}
     </ul>
   );
 }
-
-Suggest.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      id: PropTypes.number,
-    })
-  ).isRequired,
-};

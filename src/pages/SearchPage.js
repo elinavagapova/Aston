@@ -25,11 +25,11 @@ export function SearchPage() {
   };
 
   useEffect(() => {
-    onRequest(offset, nameQuery);
+    onRequest(1, nameQuery);
     return () => {
       dispatch(comicsCleaned());
     };
-  }, [nameQuery]);
+  }, [nameQuery]); // eslint-disable-line
 
   const errorMessage = isError ? <ErrorMessage /> : null;
   const spinner = isLoading ? <Spinner /> : null;
