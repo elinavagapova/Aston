@@ -27,7 +27,7 @@ export function ComicsList() {
     return () => {
       dispatch(comicsCleaned());
     };
-  }, []);
+  }, []); // eslint-disable-line
 
   const errorMessage = isError ? <ErrorMessage /> : null;
   const spinner = isLoading && newItemLoading ? <Spinner /> : null;
