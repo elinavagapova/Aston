@@ -12,9 +12,18 @@ import './comicsList.scss';
 
 export function ComicsList() {
   const [offset, setOffset] = useState(360);
-  const { isLoading, isError, comicsList, comicsEnded, newItemLoading } = useSelector(
-    state => state.allComics
-  );
+
+  const getIsLoading = state => state.allComics.isLoading;
+  const isLoading = useSelector(getIsLoading);
+  const getIsError = state => state.allComics.isError;
+  const isError = useSelector(getIsError);
+  const getComicsList = state => state.allComics.comicsList;
+  const comicsList = useSelector(getComicsList);
+  const getComicsEnded = state => state.allComics.comicsEnded;
+  const comicsEnded = useSelector(getComicsEnded);
+  const getNewItemLoading = state => state.allComics.newItemLoading;
+  const newItemLoading = useSelector(getNewItemLoading);
+
   const dispatch = useDispatch();
 
   const onRequest = offsetId => {

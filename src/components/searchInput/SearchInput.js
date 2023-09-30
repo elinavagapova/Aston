@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input } from 'antd';
+import PropTypes from 'prop-types';
 
 import { Suggest } from '../suggest/Suggest';
 import { useGetSuggestQuery } from '../../api/apiSlice';
 import { useDebounce } from '../../hooks/useDebounce';
-import dataContext from '../../context/context';
 
-export function SearchInput() {
-  const { Provider } = dataContext;
-  const [value, setValue] = useState('');
+export function SearchInput({ nameQuery }) {
+  const [value, setValue] = useState(nameQuery);
   const [blur, setBlur] = useState(false);
   const debouncedSearch = useDebounce(value, 500);
   const { data } = useGetSuggestQuery(debouncedSearch, {
@@ -41,12 +40,19 @@ export function SearchInput() {
           type='submit'
           className='button button__main'
           disabled={!value.length}
-          onClick={() => setValue('')}
+          onClick={() => setBlur(false)}
         >
           <div className='inner'>Поиск</div>
         </button>
       </Link>
-      <Provider value={data}>{data && value && blur && <Suggest />}</Provider>
+      {data && value && blur && <Suggest data={data} />}
     </Form>
   );
 }
+
+SearchInput.propTypes = {
+  nameQuery: PropTypes.string,
+};
+SearchInput.defaultProps = {
+  nameQuery: '',
+};

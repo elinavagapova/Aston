@@ -3,12 +3,14 @@ import { useDispatch } from 'react-redux';
 import { removeUser } from '../../store/userSlice';
 
 import { useAuth } from '../../hooks/useAuth';
+import { useTheme } from '../../hooks/useTheme';
 
 import './appHeader.scss';
 
 export function AppHeader() {
   const dispatch = useDispatch();
   const { isAuth } = useAuth();
+  const { isDark, setIsDark } = useTheme();
 
   const header = isAuth ? (
     <>
@@ -43,6 +45,14 @@ export function AppHeader() {
           <span>Marvel</span> comics
         </Link>
       </h1>
+      <button
+        type='button'
+        onClick={() => {
+          setIsDark(!isDark);
+        }}
+      >
+        Изменить тему
+      </button>
       <nav className='app__menu'>
         <ul>{header}</ul>
       </nav>

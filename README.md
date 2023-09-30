@@ -17,7 +17,7 @@
 - [x] Есть разделение на **умные и глупые компоненты**. [ButtonLoadMore](https://github.com/elinavagapova/aston/blob/main/src/components/buttonLoadMore/ButtonLoadMore.js), [SearchPage](https://github.com/elinavagapova/aston/blob/main/src/pages/SearchPage.js)
 - [x] Есть **рендеринг списков**. [Comics](https://github.com/elinavagapova/aston/blob/main/src/components/%D1%81omics/Comics.js)
 - [x] Реализована хотя бы одна **форма**. [Form](https://github.com/elinavagapova/aston/blob/main/src/components/form/Form.js), [SearchInput](https://github.com/elinavagapova/aston/blob/main/src/components/searchInput/SearchInput.js)
-- [x] Есть применение **Контекст API**. [Suggest](https://github.com/elinavagapova/aston/blob/main/src/components/suggest/Suggest.js)
+- [x] Есть применение **Контекст API**. [ThemeContext](https://github.com/elinavagapova/aston/blob/main/src/context/ThemeContext.js)
 - [x] Есть применение **предохранителя**. [ComicPage](https://github.com/elinavagapova/aston/blob/main/src/pages/ComicPage.js), [Home](https://github.com/elinavagapova/aston/blob/main/src/pages/Home.js)
 - [x] Есть хотя бы один **кастомный хук**. [http.hook](https://github.com/elinavagapova/aston/blob/main/src/hooks/http.hook.js), [useAuth](https://github.com/elinavagapova/aston/blob/main/src/hooks/useAuth.js), [useDebounce](https://github.com/elinavagapova/aston/blob/main/src/hooks/useDebounce.js)
 - [x] Хотя бы несколько компонентов используют **PropTypes**. [ButtonLoadMore](https://github.com/elinavagapova/aston/blob/main/src/components/buttonLoadMore/ButtonLoadMore.js), [Comics](https://github.com/elinavagapova/aston/blob/main/src/components/%D1%81omics/Comics.js), [Form](https://github.com/elinavagapova/aston/blob/main/src/components/form/Form.js)

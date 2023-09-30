@@ -40,7 +40,7 @@ export function SearchPage() {
 
   return (
     <>
-      <SearchInput />
+      <SearchInput nameQuery={nameQuery} />
       <div className='comics__list'>
         {spinner}
         {errorMessage}
